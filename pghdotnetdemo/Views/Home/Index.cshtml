@@ -1,0 +1,140 @@
+﻿@model List<pghdotnetdemo.Code.Game>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Edit</th>
+                    <th>ID</th>
+                    <th>Away Team</th>
+                    <th>Away Score</th>
+                    <th>Home Team</th>
+                    <th>Home Score</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyGames">
+                @foreach (pghdotnetdemo.Code.Game game in @Model)
+                {
+                    <tr gameid="@game.ID">
+                        <td>
+                            <button class="btnEditGame btn btn-primary btn-mini">Edit</button>
+                        </td>
+                        <td>
+                            <span id="spnID">@game.ID</span>
+                        </td>
+                        <td>
+                            <span id="spnAwayTeam">@game.AwayTeam</span>
+                        </td>
+                        <td>
+                            <span id="spnAwayScore">@game.AwayScore</span>
+                        </td>
+                        <td>
+                            <span id="spnHomeTeam">@game.HomeTeam</span>
+                        </td>
+                        <td>
+                            <span id="spnHomeScore">@game.HomeScore</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button class="btnAddGame btn btn-success">Add Game</button>
+    </div>
+    <div id="divNewGame" class="modal hide fade">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>New Game</h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="tbAwayTeam">Away Team</label>
+                    <div class="controls">
+                        <input id="tbAwayTeam" type="text" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="tbHomeTeam">Home Team</label>
+                    <div class="controls">
+                        <input id="tbHomeTeam" type="text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modalAddGame btn btn-primary">Add Game</button>
+        </div>
+    </div>
+    <div id="divEditGame" class="modal hide fade">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Edit Game</h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="tbAwayScore">Away Score</label>
+                    <div class="controls">
+                        <input id="tbAwayScore" type="text" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="tbHomeScore">Home Score</label>
+                    <div class="controls">
+                        <input id="tbHomeScore" type="text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modalEditGame btn btn-primary">Update</button>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            //Add Game Modal Button Clicks
+            $('.btnAddGame').click(function () {
+                $('#divNewGame').modal('show');
+            });
+
+            $('.modalAddGame').click(function () {
+                $('#divNewGame').modal('hide');
+            });
+
+            //Edit Game Modal Button Clicks
+            $('.btnEditGame').each(function(){
+                $(this).click(function () {
+                    $('#divEditGame').modal('show');
+                });
+            });
+
+            $('.modalEditGame').click(function () {
+                $('#divEditGame').modal('hide');
+            });
+        });
+
+        function AddNewGame(game) {
+            var $tr = $('<tr gameid="' + game.ID + '"><td><button class="btnEditGame btn btn-primary btn-mini">Edit</button></td><td><span id="spnID">' + game.ID + '</span></td><td><span id="spnAwayTeam">' + game.AwayTeam + '</span></td><td><span id="spnAwayScore">' + game.AwayScore + '</span></td><td><span id="spnHomeTeam">' + game.HomeTeam + '</span></td><td><span id="spnHomeScore">' + game.HomeScore + '</span></td></tr>');
+            $('#tbodyGames').append($tr);
+        }
+    </script>
+</body>
+</html>
