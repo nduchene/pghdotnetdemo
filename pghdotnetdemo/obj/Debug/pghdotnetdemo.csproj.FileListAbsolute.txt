@@ -31,3 +31,12 @@ C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\obj\Debug\pghdotnet
 C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\obj\Debug\pghdotnetdemo.csprojResolveAssemblyReference.cache
 C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\obj\Debug\pghdotnetdemo.dll
 C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\obj\Debug\pghdotnetdemo.pdb
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Microsoft.AspNet.SignalR.Owin.dll
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Owin.dll
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Microsoft.AspNet.SignalR.Owin.xml
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Nathan\Documents\GitHub\pghdotnetdemo\pghdotnetdemo\bin\Microsoft.Owin.Host.SystemWeb.xml

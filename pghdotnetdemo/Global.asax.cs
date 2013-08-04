@@ -15,6 +15,9 @@ namespace pghdotnetdemo
     {
         protected void Application_Start()
         {
+            // Register the default hubs route: ~/signalr
+            RouteTable.Routes.MapHubs();
+
             //temp
             GameRepository.Games.Add(new Game { ID = 1, AwayTeam = "Away1", HomeTeam = "Home1" });
 
