@@ -121,10 +121,11 @@
 
             gameHub.client.UpdateGame = function (game) {
                 var tr = GetParentTableRowByGameID(game.ID);
-                tr.fadeOut();
-                tr.children().find('#spnAwayScore').text(game.AwayScore);
-                tr.children().find('#spnHomeScore').text(game.HomeScore);
-                tr.fadeIn();
+                tr.fadeOut(1000, function () {
+                    tr.children().find('#spnAwayScore').text(game.AwayScore);
+                    tr.children().find('#spnHomeScore').text(game.HomeScore);
+                    tr.fadeIn();
+                });                
             };
 
             $.connection.hub.start()
@@ -173,8 +174,10 @@
 
                 ShowEditGameModal(gameID);
             });
+            $tr.hide();
 
             $('#tbodyGames').append($tr);
+            $tr.fadeIn();
         }
 
         function ShowEditGameModal(gameID) {
