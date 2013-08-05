@@ -124,8 +124,18 @@
                 $homeTeam.val('');
             });
 
+            $('.modalEditGame').click(function () {
+                var gameID = $('#modalSpnGameID').text();
+                var $awayScore = $('#tbAwayScore');
+                var $homeScore = $('#tbHomeScore');
+
+                $('#divEditGame').modal('hide');
+                $awayScore.val('');
+                $homeScore.val('');
+            });
+
             //Edit Game Modal Button Clicks
-            $('.btnEditGame').each(function(){
+            $('.btnEditGame').each(function () {
                 $(this).click(function () {
                     var gameID = GetParentTableRowFromButton(this).attr('gameid');
                     $('#modalSpnGameID').text(gameID);
