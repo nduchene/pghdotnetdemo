@@ -159,8 +159,6 @@
             $('.btnEditGame').each(function () {
                 $(this).click(function () {
                     var gameID = GetParentTableRowFromButton(this).attr('gameid');
-                    $('#modalSpnGameID').text(gameID);
-
                     ShowEditGameModal(gameID);
                 });
             });
@@ -170,8 +168,6 @@
             var $tr = $('<tr gameid="' + game.ID + '"><td><button class="btnEditGame btn btn-primary btn-mini">Edit</button></td><td><span id="spnID">' + game.ID + '</span></td><td><span id="spnAwayTeam">' + game.AwayTeam + '</span></td><td><span id="spnAwayScore">' + game.AwayScore + '</span></td><td><span id="spnHomeTeam">' + game.HomeTeam + '</span></td><td><span id="spnHomeScore">' + game.HomeScore + '</span></td></tr>');
             $tr.children().find('.btnEditGame').click(function () {
                 var gameID = GetParentTableRowFromButton(this).attr('gameid');
-                $('#modalSpnGameID').text(gameID);
-
                 ShowEditGameModal(gameID);
             });
             $tr.hide();
@@ -182,6 +178,7 @@
 
         function ShowEditGameModal(gameID) {
             var $tr = GetParentTableRowByGameID(gameID);
+            $('#modalSpnGameID', '#divEditGame').text(gameID);
             var awayScore = $tr.children().find('#spnAwayScore').text();
             var homeScore = $tr.children().find('#spnHomeScore').text();
 
