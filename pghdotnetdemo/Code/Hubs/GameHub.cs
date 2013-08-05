@@ -25,7 +25,7 @@ namespace pghdotnetdemo.Code.Hubs
             game.HomeScore = homeScore;
             game.AwayScore = awayScore;
 
-            Clients.All.UpdateGame(game);
+            Clients.Group(gameID.ToString()).UpdateGame(game);
         }
 
         public void LockGame(int gameID)
@@ -42,6 +42,19 @@ namespace pghdotnetdemo.Code.Hubs
             game.GameLocked = false;
 
             Clients.Others.UnlockGame(gameID);
+        }
+
+        public void SubscribeGame(int gameID)
+        {
+            Groups.Add(Context.ConnectionId, gameID.ToString());
+
+            Game game = GameRepository.Games.Where(g => g.ID == gameID).FirstOrDefault();
+            Clients.Caller.UpdateGame(game);
+        }
+
+        public void UnsubscribeGame(int gameID)
+        {
+            Groups.Remove(Context.ConnectionId, gameID.ToString());
         }
     }
 }

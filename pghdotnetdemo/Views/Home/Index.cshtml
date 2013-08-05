@@ -18,6 +18,7 @@
             <thead>
                 <tr>
                     <th>Edit</th>
+                    <th>Subscribed</th>
                     <th>ID</th>
                     <th>Away Team</th>
                     <th>Away Score</th>
@@ -31,6 +32,9 @@
                     <tr gameid="@game.ID">
                         <td>
                             <button class="btnEditGame btn btn-primary btn-mini" @((@game.GameLocked) ? "disabled" : "")>Edit</button>
+                        </td>
+                        <td>
+                            <button class="btnSubscribeGame btn btn-danger btn-mini">No</button>
                         </td>
                         <td>
                             <span id="spnID">@game.ID</span>
@@ -170,14 +174,26 @@
                             ShowEditGameModal(gameID);
                         });
                     });
+
+                    $('.btnSubscribeGame').each(function () {
+                        $(this).click(function () {
+                            var gameID = GetParentTableRowFromButton(this).attr('gameid');
+                            if ($(this).text() == "No") {
+                                gameHub.server.subscribeGame(gameID);
+                                $(this).text('Yes').removeClass('btn-danger').addClass('btn-success');
+                            }
+                            else {
+                                gameHub.server.unsubscribeGame(gameID);
+                                $(this).text('No').removeClass('btn-success').addClass('btn-danger');
+                            }
+                        });
+                    });
                 });
 
             //Add Game Modal Button Clicks
             $('.btnAddGame').click(function () {
                 $('#divNewGame').modal('show');
-            });
-
-            
+            });            
         });
 
         function AddNewGame(game) {
