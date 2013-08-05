@@ -13,6 +13,7 @@ namespace pghdotnetdemo.Code.Hubs
             Game game = new Game();
             game.HomeTeam = homeTeam;
             game.AwayTeam = awayTeam;
+            game.ID = GameRepository.Games.Count() + 1;
 
             GameRepository.Games.Add(game);
             Clients.All.AddGame(game);
