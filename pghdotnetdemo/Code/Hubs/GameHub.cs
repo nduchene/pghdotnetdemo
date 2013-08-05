@@ -27,5 +27,21 @@ namespace pghdotnetdemo.Code.Hubs
 
             Clients.All.UpdateGame(game);
         }
+
+        public void LockGame(int gameID)
+        {
+            Game game = GameRepository.Games.Where(g => g.ID == gameID).FirstOrDefault();
+            game.GameLocked = true;
+
+            Clients.Others.LockGame(gameID);
+        }
+
+        public void UnlockGame(int gameID)
+        {
+            Game game = GameRepository.Games.Where(g => g.ID == gameID).FirstOrDefault();
+            game.GameLocked = false;
+
+            Clients.Others.UnlockGame(gameID);
+        }
     }
 }

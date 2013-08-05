@@ -13,10 +13,13 @@ namespace pghdotnetdemo.Code
         public int HomeScore { get; set; }
         public int AwayScore { get; set; }
 
+        public bool GameLocked { get; set; }
+
         public Game()
         {
             this.HomeScore = 0;
             this.AwayScore = 0;
+            this.GameLocked = false;
         }
     }
 }

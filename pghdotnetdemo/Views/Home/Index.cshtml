@@ -30,7 +30,7 @@
                 {
                     <tr gameid="@game.ID">
                         <td>
-                            <button class="btnEditGame btn btn-primary btn-mini">Edit</button>
+                            <button class="btnEditGame btn btn-primary btn-mini" @((@game.GameLocked) ? "disabled" : "")>Edit</button>
                         </td>
                         <td>
                             <span id="spnID">@game.ID</span>
@@ -128,6 +128,18 @@
                 });                
             };
 
+            gameHub.client.LockGame = function (gameID) {
+                var $tr = GetParentTableRowByGameID(gameID);
+                var $btn = $tr.children().find('button.btnEditGame').first();
+                $btn.prop('disabled', true);
+            };
+
+            gameHub.client.UnlockGame = function (gameID) {
+                var $tr = GetParentTableRowByGameID(gameID);
+                var $btn = $tr.children().find('button.btnEditGame').first();
+                $btn.prop('disabled', false);
+            };
+
             $.connection.hub.start()
                 .done(function () {
                     $('.modalAddGame').click(function () {
@@ -147,6 +159,16 @@
                         $('#divEditGame').modal('hide');
                         $awayScore.val('');
                         $homeScore.val('');
+
+                        gameHub.server.unlockGame(gameID);
+                    });
+
+                    //Edit Game Modal Button Clicks
+                    $('.btnEditGame').each(function () {
+                        $(this).click(function () {
+                            var gameID = GetParentTableRowFromButton(this).attr('gameid');
+                            ShowEditGameModal(gameID);
+                        });
                     });
                 });
 
@@ -155,13 +177,7 @@
                 $('#divNewGame').modal('show');
             });
 
-            //Edit Game Modal Button Clicks
-            $('.btnEditGame').each(function () {
-                $(this).click(function () {
-                    var gameID = GetParentTableRowFromButton(this).attr('gameid');
-                    ShowEditGameModal(gameID);
-                });
-            });
+            
         });
 
         function AddNewGame(game) {
@@ -186,6 +202,8 @@
             $('#tbHomeScore').val(homeScore);
 
             $('#divEditGame').modal('show');
+
+            gameHub.server.lockGame(gameID);
         }
 
         function GetParentTableRowByGameID(gameID) {
