@@ -81,7 +81,9 @@
         </div>
     </div>
     <div id="divEditGame" class="modal hide fade">
-        <input id="hdnGameID" type="hidden" />
+        <div>
+            GameID: <span id="modalSpnGameID"></span>
+        </div>
         <div class="modal-header">
             <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3>Edit Game</h3>
@@ -139,7 +141,7 @@
                     });
 
                     $('.modalEditGame').click(function () {
-                        var gameID = $('#hdnGameID').val();
+                        var gameID = $('#modalSpnGameID').text();
                         var $awayScore = $('#tbAwayScore');
                         var $homeScore = $('#tbHomeScore');
                         gameHub.server.updateGame(gameID, $homeScore.val(), $awayScore.val());
@@ -158,9 +160,9 @@
             $('.btnEditGame').each(function () {
                 $(this).click(function () {
                     var gameID = GetParentTableRowFromButton(this).attr('gameid');
-                    $('#hdnGameID').val(gameID);
+                    $('#modalSpnGameID').text(gameID);
 
-                    ShowEditGameModal();
+                    ShowEditGameModal(gameID);
                 });
             });
         });
@@ -168,14 +170,17 @@
         function AddNewGame(game) {
             var $tr = $('<tr gameid="' + game.ID + '"><td><button class="btnEditGame btn btn-primary btn-mini">Edit</button></td><td><span id="spnID">' + game.ID + '</span></td><td><span id="spnAwayTeam">' + game.AwayTeam + '</span></td><td><span id="spnAwayScore">' + game.AwayScore + '</span></td><td><span id="spnHomeTeam">' + game.HomeTeam + '</span></td><td><span id="spnHomeScore">' + game.HomeScore + '</span></td></tr>');
             $tr.children().find('.btnEditGame').click(function () {
-                ShowEditGameModal();
+                var gameID = GetParentTableRowFromButton(this).attr('gameid');
+                $('#modalSpnGameID').text(gameID);
+
+                ShowEditGameModal(gameID);
             });
 
             $('#tbodyGames').append($tr);
         }
 
-        function ShowEditGameModal() {
-            var $tr = GetParentTableRowByGameID($('#hdnGameID').val());
+        function ShowEditGameModal(gameID) {
+            var $tr = GetParentTableRowByGameID(gameID);
             var awayScore = $tr.children().find('#spnAwayScore').text();
             var homeScore = $tr.children().find('#spnHomeScore').text();
 
