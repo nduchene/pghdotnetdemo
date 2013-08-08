@@ -150,6 +150,8 @@
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\pghdotnetdemo - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\pghdotnetdemo - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

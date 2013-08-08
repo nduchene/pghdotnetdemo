@@ -18,9 +18,6 @@ namespace pghdotnetdemo
             // Register the default hubs route: ~/signalr
             RouteTable.Routes.MapHubs();
 
-            //temp
-            GameRepository.Games.Add(new Game { ID = 1, AwayTeam = "Away1", HomeTeam = "Home1" });
-
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
